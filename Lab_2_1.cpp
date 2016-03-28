@@ -34,25 +34,22 @@ void myAnalogWrite(int pin,int percent,int time)
 
 void setup(){
 pinMode(REAR_LED_PIN,OUTPUT);
-
 }
+
+
 
 void loop(){
 
+if (stop == false)  {
+	int stage = 100;
+    int i ;
+	for( i = stage ; i>0 ; i--){
 
-if(stop==false)
-{
-	myAnalogWrite(REAR_LED_PIN,100,2000);
+		int time_1 = (int)(10000/stage);
 
-	myAnalogWrite(REAR_LED_PIN,75,2000);
-
-	myAnalogWrite(REAR_LED_PIN,50,2000);
-
-	myAnalogWrite(REAR_LED_PIN,25,2000);
-	myAnalogWrite(REAR_LED_PIN,0,2000);
-
-	digitalWrite(REAR_LED_PIN,LOW);
-	stop=true;
+		myAnalogWrite(REAR_LED_PIN,i,time_1);
+	  }
+	stop = true;
+}
 }
 
-}
